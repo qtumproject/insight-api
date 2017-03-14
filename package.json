@@ -61,7 +61,7 @@
   "bitcoreNode": "lib",
   "dependencies": {
     "async": "*",
-    "bitcore-lib": "git+ssh://git@gitlab.pixelplex.by:593_qtum/bitcore-lib.git#master",
+    "bitcore-lib": "^0.13.7",
     "bitcore-message": "^1.0.1",
     "body-parser": "^1.13.3",
     "compression": "^1.6.1",
