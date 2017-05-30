@@ -123,6 +123,21 @@ Or disabled entirely with:
 
 ## API HTTP Endpoints
 
+### Statistic
+```
+  /insight-api/statistic/transactions
+```
+This would return:
+```
+[
+    {
+        date: "2017-05-30",
+        transaction_count: 1087,
+        block_count: 541
+    },
+    ...
+]
+```
 ### Block
 ```
   /insight-api/block/[:hash]
