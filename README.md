@@ -151,9 +151,26 @@ This would return:
 }
 ```
 
-### Statistic
+### Statistic / Total / 24h
 ```
-  `GET` /insight-api/statistic/transactions
+  `GET` /insight-api/statistic/total
+```
+This would return:
+```
+    {
+        n_blocks_mined: 1268,
+        time_between_blocks: 86301,
+        mined_currency_amount: 1268000000000000,
+        transaction_fees: 633992859997,
+        number_of_transactions: 2547,
+        outputs_volume: 46920965480,
+        difficulty: 981808167.7687966,
+        stake: 0.17279912782774598
+    }
+```
+### Statistic / Transactions
+```
+  `GET` /insight-api/statistic/transactions?days=14
 ```
 This would return:
 ```
@@ -166,6 +183,64 @@ This would return:
     ...
 ]
 ```
+
+### Statistic / Fees
+```
+  `GET` /insight-api/statistic/fees?days=14
+```
+This would return:
+```
+[
+   {
+       date: "2017-06-06",
+       fee: 500000000
+   },
+   ...
+]
+```
+### Statistic / Outputs
+```
+  `GET` /insight-api/statistic/outputs?days=14
+```
+This would return:
+```
+[
+   {
+       date: "2017-06-06",
+       sum: 0
+   },
+   ...
+]
+```
+### Statistic / Difficulty
+```
+  `GET` /insight-api/statistic/difficulty?days=14
+```
+This would return:
+```
+[
+    {
+        date: "2017-06-06",
+        sum: 0
+    },
+    ...
+]
+```
+### Statistic / Stake
+```
+  `GET` /insight-api/statistic/stake?days=14
+```
+This would return:
+```
+[
+    {
+        date: "2017-06-06",
+        sum: 0
+    },
+    ...
+]
+```
+
 ### Block
 ```
   /insight-api/block/[:hash]
