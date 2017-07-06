@@ -253,22 +253,4 @@ describe('Blocks', function() {
     });
   });
 
-  describe('#getBlockReward', function() {
-    var node = {
-      log: sinon.stub()
-    };
-    var blocks = new BlockController({node: node});
-
-    it('should give a block reward of 50 * 1e8 for block before first halvening', function() {
-      blocks.getBlockReward(100000).should.equal(50 * 1e8);
-    });
-
-    it('should give a block reward of 25 * 1e8 for block between first and second halvenings', function() {
-      blocks.getBlockReward(373011).should.equal(25 * 1e8);
-    });
-
-    it('should give a block reward of 12.5 * 1e8 for block between second and third halvenings', function() {
-      blocks.getBlockReward(500000).should.equal(12.5 * 1e8);
-    });
-  });
 });
