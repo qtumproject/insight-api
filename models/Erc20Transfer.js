@@ -5,6 +5,10 @@ const erc20TransferSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    tx_time: {
+        type: Number,
+        required: true
+    },
     log_idx: {
         type: Number
     },
