@@ -31,4 +31,18 @@ Erc20BalanceRepository.prototype.getCountBalances = function (contractAddress, n
     });
 };
 
+/**
+ *
+ * @param {String} contractAddress
+ * @param {Object} options
+ * @param {Number} options.limit
+ * @param {Number} options.offset
+ * @param {Function} next
+ */
+Erc20BalanceRepository.prototype.fetchBalances = function (contractAddress, options, next) {
+    return Erc20Balance.find({contract_address: contractAddress}, {}, {sort: {created_at: -1}, limit: options.limit, skip: options.offset}, function(err, balances) {
+        return next(err, balances);
+    });
+};
+
 module.exports = Erc20BalanceRepository;
