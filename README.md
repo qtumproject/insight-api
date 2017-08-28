@@ -500,6 +500,10 @@ Where "xxx" can be:
   /insight-api/utils/estimatefee[?nbBlocks=2]
 ```
 
+### Erc20 info
+```
+  /insight-api/erc20/:contractAddress
+```
 
 ## Web Socket API
 The web socket API is served using [socket.io](http://socket.io).
@@ -592,3 +596,4 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+

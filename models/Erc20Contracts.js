@@ -1,0 +1,40 @@
+const mongoose = require('mongoose');
+
+const erc20ContractsSchema = new mongoose.Schema({
+    tx_hash: {
+        type: String,
+        required: true
+    },
+    vout_idx: {
+        type: Number,
+        required: true
+    },
+    contract_address: {
+        type: String,
+        required: true
+    },
+    symbol: {
+        type: String
+    },
+    decimals: {
+        type: String
+    },
+    name: {
+        type: String
+    },
+    total_supply: {
+        type: String
+    },
+    exception: {
+        type: Boolean
+    }
+}, {
+    timestamps: {
+        createdAt: 'created_at',
+        updatedAt: 'updated_at'
+    }
+});
+
+const Erc20Contracts = mongoose.model('Erc20Contracts', erc20ContractsSchema);
+
+module.exports = Erc20Contracts;
