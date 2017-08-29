@@ -504,6 +504,14 @@ Where "xxx" can be:
 ```
   /insight-api/erc20/:contractAddress
 ```
+### Erc20 transfers
+```
+  /insight-api/erc20/:contractAddress/transfers
+```
+### Erc20 balances
+```
+  /insight-api/erc20/:contractAddress/balances
+```
 
 ## Web Socket API
 The web socket API is served using [socket.io](http://socket.io).
