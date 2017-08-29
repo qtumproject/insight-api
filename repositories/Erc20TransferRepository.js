@@ -14,6 +14,17 @@ Erc20TransferRepository.prototype.getCountTransfers = function (contractAddress,
         return next(err, count);
     });
 };
+/**
+ *
+ * @param {String} contractAddress
+ * @param {Function} next
+ * @return {*}
+ */
+Erc20TransferRepository.prototype.getCountTransfersByTxHash = function (txHash, next) {
+    return Erc20Transfer.count({tx_hash: txHash}, function(err, count) {
+        return next(err, count);
+    });
+};
 
 /**
  *

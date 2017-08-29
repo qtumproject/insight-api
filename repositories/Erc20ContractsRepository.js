@@ -8,6 +8,17 @@ Erc20ContractsRepository.prototype.fetchContract = function (contractAddress, ne
         return next(err, row);
     });
 };
+/**
+ *
+ * @param {String} txId
+ * @param {Function} next
+ * @return {*}
+ */
+Erc20ContractsRepository.prototype.fetchContractsByTxId = function (txId, next) {
+    return Erc20Contracts.find({tx_hash: txId}, function(err, rows) {
+        return next(err, rows);
+    });
+};
 
 Erc20ContractsRepository.prototype.updateTotalSupply = function (contractAddress, totalSupply, next) {
     return Erc20Contracts.update({contract_address: contractAddress}, {total_supply: totalSupply}, function(err, row) {
