@@ -30,7 +30,7 @@
     "async": "*",
     "bignumber.js": "^4.0.2",
     "bitcore-lib": "^0.13.7",
-    "qtumcore-lib": "git+ssh://git@github.com:qtumproject/qtumcore-lib.git#master",
+    "qtumcore-lib": "git+ssh://git@github.com:qtumproject/qtumcore-lib.git#4eb3e13da19e3df5af1fb9ba1c564e95b127b55a",
     "bitcore-message": "^1.0.1",
     "body-parser": "^1.13.3",
     "compression": "^1.6.1",
