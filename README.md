@@ -1,105 +1,29 @@
 # Insight API
 
-A Bitcoin blockchain REST and web socket API service for [Bitcore Node](https://github.com/bitpay/bitcore-node).
+A QTUM blockchain REST and web socket API service for [Qtumcore Node](https://github.com/qtumproject/qtumcore-node).
 
-This is a backend-only service. If you're looking for the web frontend application, take a look at https://github.com/bitpay/insight-ui.
+This is a backend-only service. If you're looking for the web frontend application, take a look at https://github.com/qtumproject/qtum-explorer.
 
 ## Getting Started
 
 ```bashl
-npm install -g bitcore-node@latest
-bitcore-node create mynode
+npm install -g qtumcore-node@latest
+qtumcore-node create mynode
 cd mynode
-bitcore-node install insight-api
-bitcore-node start
+qtumcore-node install insight-api
+qtumcore-node start
 ```
 
 The API endpoints will be available by default at: `http://localhost:3001/insight-api/`
 
 ## Prerequisites
 
-- [Bitcore Node 3.x](https://github.com/bitpay/bitcore-node)
+**Note:** You can use an existing QTUM data directory, however `txindex`, `addressindex`, `timestampindex` and `spentindex` needs to be set to true in `qtum.conf`, as well as a few other additional fields.
 
-**Note:** You can use an existing Bitcoin data directory, however `txindex`, `addressindex`, `timestampindex` and `spentindex` needs to be set to true in `bitcoin.conf`, as well as a few other additional fields.
-
-## Notes on Upgrading from v0.3
-
-The unspent outputs format now has `satoshis` and `height`:
-```
-[
-  {
-    "address":"mo9ncXisMeAoXwqcV5EWuyncbmCcQN4rVs",
-    "txid":"d5f8a96faccf79d4c087fa217627bb1120e83f8ea1a7d84b1de4277ead9bbac1",
-    "vout":0,
-    "scriptPubKey":"76a91453c0307d6851aa0ce7825ba883c6bd9ad242b48688ac",
-    "amount":0.000006,
-    "satoshis":600,
-    "confirmations":0,
-    "ts":1461349425
-  },
-  {
-    "address": "mo9ncXisMeAoXwqcV5EWuyncbmCcQN4rVs",
-    "txid": "bc9df3b92120feaee4edc80963d8ed59d6a78ea0defef3ec3cb374f2015bfc6e",
-    "vout": 1,
-    "scriptPubKey": "76a91453c0307d6851aa0ce7825ba883c6bd9ad242b48688ac",
-    "amount": 0.12345678,
-    "satoshis: 12345678,
-    "confirmations": 1,
-    "height": 300001
-  }
-]
-```
-The `timestamp` property will only be set for unconfirmed transactions and `height` can be used for determining block order. The `confirmationsFromCache` is nolonger set or necessary, confirmation count is only cached for the time between blocks.
-
-There is a new `GET` endpoint or raw blocks at `/rawblock/<blockHash>`:
-
-Response format:
-```
-{
-  "rawblock": "blockhexstring..."
-}
-```
-
-There are a few changes to the `GET` endpoint for `/addr/[:address]`:
-
-- The list of txids in an address summary does not include orphaned transactions
-- The txids will be sorted in block order
-- The list of txids will be limited at 1000 txids
-- There are two new query options "from" and "to" for pagination of the txids (e.g. `/addr/[:address]?from=1000&to=2000`)
-
-Some additional general notes:
-- The transaction history for an address will be sorted in block order
-- The response for the `/sync` endpoint does not include `startTs` and `endTs` as the sync is no longer relevant as indexes are built in bitcoind.
-- The endpoint for `/peer` is no longer relevant connection to bitcoind is via ZMQ.
-- `/tx` endpoint results will now include block height, and spentTx related fields will be set to `null` if unspent.
-- `/block` endpoint results does not include `confirmations` and will include `poolInfo`.
-
-## Notes on Upgrading from v0.2
-
-Some of the fields and methods are not supported:
-
-The `/tx/<txid>` endpoint JSON response will not include the following fields on the "vin"
-object:
-- `doubleSpentTxId` // double spends are not currently tracked
-- `isConfirmed` // confirmation of the previous output
-- `confirmations` // confirmations of the previous output
-- `unconfirmedInput`
-
-The `/tx/<txid>` endpoint JSON response will not include the following fields on the "vout"
-object.
-- `spentTs`
-
-The `/status?q=getTxOutSetInfo` method has also been removed due to the query being very slow and locking bitcoind.
-
-Plug-in support for Insight API is also no longer available, as well as the endpoints:
-- `/email/retrieve`
-- `/rates/:code`
-
-Caching support has not yet been added in the v0.3 upgrade.
 
 ## Query Rate Limit
 
-To protect the server, insight-api has a built it query rate limiter. It can be configurable in `bitcore-node.json` with:
+To protect the server, insight-api has a built it query rate limiter. It can be configurable in `qtumcore-node.json` with:
 ``` json
   "servicesConfig": {
     "insight-api": {
@@ -109,7 +33,6 @@ To protect the server, insight-api has a built it query rate limiter. It can be 
     }
   }
 ```
-With all the configuration options available: https://github.com/bitpay/insight-api/blob/master/lib/ratelimiter.js#L10-17
 
 Or disabled entirely with:
 ``` json
@@ -482,7 +405,7 @@ POST response:
   /insight-api/peer
 ```
 
-### Status of the Bitcoin Network
+### Status of the QTUM Network
 ```
   /insight-api/status?q=xxx
 ```
@@ -538,8 +461,6 @@ Sample output:
   ...
 }
 ```
-
-`<bitcoinAddress>`: new transaction concerning <bitcoinAddress> received from network. This event is published in the `<bitcoinAddress>` room.
 
 `status`: every 1% increment on the sync task, this event will be triggered. This event is published in the `sync` room.
 
