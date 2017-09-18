@@ -41,6 +41,12 @@ TransactionService.prototype.getDetailedTransaction = function (txid, callback) 
 
 };
 
+/**
+ *
+ * @param {Object} transaction
+ * @param {Function} next
+ * @return {*}
+ */
 TransactionService.prototype.addReceiptIfTransfersExists = function (transaction, next) {
 
     var self = this;

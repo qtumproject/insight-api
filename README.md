@@ -423,6 +423,19 @@ Where "xxx" can be:
   /insight-api/utils/estimatefee[?nbBlocks=2]
 ```
 
+### Min Estimate Fee Per KB
+```
+  /insight-api/utils/minestimatefee[?nbBlocks=2]
+```
+
+resp:
+
+```
+{
+    fee_per_kb: 0.00001
+}
+```
+
 ### Erc20 info
 ```
   /insight-api/erc20/:contractAddress
