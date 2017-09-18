@@ -30,29 +30,44 @@ TransactionService.prototype.getDetailedTransaction = function (txid, callback) 
         });
 
     }, function (callback) {
-        return self.erc20TransferRepository.getCountTransfersByTxHash(txid, function (err, count) {
-            return callback(err, count);
-        });
-    }, function (count, callback) {
 
-        if (count) {
-            return self.node.getTransactionReceipt(txid, function (err, result) {
+        return self.addReceiptIfTransfersExists(tx, function (err, transaction) {
+            return callback(err, transaction);
+        });
+
+    }], function (err, transaction) {
+        return callback(err, transaction);
+    });
+
+};
+
+TransactionService.prototype.addReceiptIfTransfersExists = function (transaction, next) {
+
+    var self = this;
+
+    return async.waterfall([function (callback) {
+        return self.erc20TransferRepository.isTransfersExistsByTxHash(transaction.hash, function (err, exists) {
+            return callback(err, exists);
+        });
+    }, function (exists, callback) {
+
+        if (exists) {
+            return self.node.getTransactionReceipt(transaction.hash, function (err, result) {
 
                 if (err) {
                     return callback(err);
                 }
 
-                tx.receipt = result;
+                transaction.receipt = result;
 
-                return callback(null, tx);
+                return callback(null, transaction);
             });
         }
 
-        return callback(null, tx);
-    }], function (err, tx) {
-        return callback(err, tx);
+        return callback(null, transaction);
+    }], function (err, transaction) {
+        return next(err, transaction);
     });
-
 };
 
 
