@@ -449,6 +449,12 @@ resp:
   /insight-api/erc20/:contractAddress/balances
 ```
 
+### Call Contract
+
+```
+/contracts/:contractaddress/hash/:contracthash/call
+```
+
 ## Web Socket API
 The web socket API is served using [socket.io](http://socket.io).
 

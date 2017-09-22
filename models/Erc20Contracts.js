@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 const erc20ContractsSchema = new mongoose.Schema({
+    block_height: {
+        type: Number
+    },
     tx_hash: {
         type: String,
         required: true
@@ -20,6 +23,9 @@ const erc20ContractsSchema = new mongoose.Schema({
         type: String
     },
     name: {
+        type: String
+    },
+    version: {
         type: String
     },
     total_supply: {

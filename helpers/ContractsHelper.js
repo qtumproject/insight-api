@@ -74,6 +74,18 @@ module.exports = {
 
         return false;
     },
+    isContainVersion: function (scriptHex) {
+
+        if (scriptHex) {
+
+            if (scriptHex.indexOf(functionHashes['version()']) !== -1) {
+                return true;
+            }
+
+        }
+
+        return false;
+    },
     isContractCreate: function (script) {
         return this.isScriptEqualOpCodes(script, [CONTRACT_CREATE]);
     },

@@ -9,5 +9,6 @@
   "transfer(address,uint256)": "a9059cbb",
   "transferFrom(address,address,uint256)": "23b872dd",
   "Transfer(address,address,uint256)": "ddf252ad",
-  "Approval(address,address,uint256)": "8c5be1e5"
+  "Approval(address,address,uint256)": "8c5be1e5",
+  "version()": "54fd4d50"
 }
