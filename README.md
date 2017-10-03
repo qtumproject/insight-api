@@ -1,5 +1,12 @@
 # Insight API
 
+## Table of Contents
+* [Getting Started](#getting-started)
+* [DGP info](#dgpinfo)
+* [QRC20 info](#qrc20-info)
+* [QRC20 transfers](#qrc20-transfers)
+* [QRC20 balances](#qrc20-balances)
+
 A QTUM blockchain REST and web socket API service for [Qtumcore Node](https://github.com/qtumproject/qtumcore-node).
 
 This is a backend-only service. If you're looking for the web frontend application, take a look at https://github.com/qtumproject/qtum-explorer.
@@ -410,6 +417,11 @@ POST response:
   /insight-api/status?q=xxx
 ```
 
+### DGP info
+```
+  /insight-api/dgpinfo
+```
+
 Where "xxx" can be:
 
  * getInfo
@@ -436,21 +448,22 @@ resp:
 }
 ```
 
-### Erc20 info
+### QRC20 info
 ```
   /insight-api/erc20/:contractAddress
 ```
-### Erc20 transfers
+
+### QRC20 transfers
 ```
   /insight-api/erc20/:contractAddress/transfers
 ```
-### Erc20 balances
+
+### QRC20 balances
 ```
   /insight-api/erc20/:contractAddress/balances
 ```
 
 ### Call Contract
-
 ```
 /contracts/:contractaddress/hash/:contracthash/call
 ```
