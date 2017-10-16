@@ -8,7 +8,7 @@
 * [QRC20 balances](#qrc20-balances)
 
 ### Statistics
-* [Total 24h](#total-24h)
+* [Total 24h](#total-24h-statistic)
 * [Transactions](#transactions-statistic)
 * [Fees](#fees-statistic)
 * [Outputs](#outputs-statistic)
@@ -92,7 +92,7 @@ This would return:
 
 ## Statistics
 
-### Total 24h
+### Total 24h Statistic
 ```
   `GET` /insight-api/statistics/total
 ```
@@ -109,7 +109,7 @@ This would return:
         stake: 0.17279912782774598
     }
 ```
-### Transactions
+### Transactions Statistic
 ```
   `GET` /insight-api/statistics/transactions?days=14
 ```
@@ -125,7 +125,7 @@ This would return:
 ]
 ```
 
-### Fees
+### Fees Statistic
 ```
   `GET` /insight-api/statistics/fees?days=14
 ```
@@ -139,7 +139,7 @@ This would return:
    ...
 ]
 ```
-### Outputs
+### Outputs Statistic
 ```
   `GET` /insight-api/statistics/outputs?days=14
 ```
@@ -153,7 +153,7 @@ This would return:
    ...
 ]
 ```
-### Difficulty
+### Difficulty Statistic
 ```
   `GET` /insight-api/statistics/difficulty?days=14
 ```
@@ -167,7 +167,7 @@ This would return:
     ...
 ]
 ```
-### Stake
+### Stake Statistic
 ```
   `GET` /insight-api/statistics/stake?days=14
 ```
@@ -182,7 +182,7 @@ This would return:
 ]
 ```
 
-### Total Supply
+### Total Supply Statistic
 
 ```
   `GET` /insight-api/supply
