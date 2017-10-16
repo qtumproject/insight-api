@@ -6,6 +6,7 @@
 * [QRC20 info](#qrc20-info)
 * [QRC20 transfers](#qrc20-transfers)
 * [QRC20 balances](#qrc20-balances)
+* [Statistics / Total Supply (QTUM)](#total-supply)
 
 A QTUM blockchain REST and web socket API service for [Qtumcore Node](https://github.com/qtumproject/qtumcore-node).
 
@@ -169,6 +170,25 @@ This would return:
     },
     ...
 ]
+```
+
+### Statistics / Total Supply (QTUM)
+```
+  `GET` /insight-api/supply
+```
+or
+```
+  `GET` /insight-api/supply?format=object
+```
+This would return:
+```
+100091264
+```
+or
+```
+{
+    "supply": "100091264"
+}
 ```
 
 ### Block
