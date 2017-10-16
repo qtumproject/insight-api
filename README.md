@@ -8,7 +8,13 @@
 * [QRC20 balances](#qrc20-balances)
 
 ### Statistics
-* [Total Supply](#total-supply)
+* [Total 24h](#total-24h)
+* [Transactions](#transactions-statistic)
+* [Fees](#fees-statistic)
+* [Outputs](#outputs-statistic)
+* [Difficulty](#difficulty-statistic)
+* [Stake](#stake-statistic)
+* [Total Supply](#total-supply-statistic)
 
 A QTUM blockchain REST and web socket API service for [Qtumcore Node](https://github.com/qtumproject/qtumcore-node).
 
@@ -84,7 +90,9 @@ This would return:
 }
 ```
 
-### Statistics / Total / 24h
+## Statistics
+
+### Total 24h
 ```
   `GET` /insight-api/statistics/total
 ```
@@ -101,7 +109,7 @@ This would return:
         stake: 0.17279912782774598
     }
 ```
-### Statistics / Transactions
+### Transactions
 ```
   `GET` /insight-api/statistics/transactions?days=14
 ```
@@ -117,7 +125,7 @@ This would return:
 ]
 ```
 
-### Statistics / Fees
+### Fees
 ```
   `GET` /insight-api/statistics/fees?days=14
 ```
@@ -131,7 +139,7 @@ This would return:
    ...
 ]
 ```
-### Statistics / Outputs
+### Outputs
 ```
   `GET` /insight-api/statistics/outputs?days=14
 ```
@@ -145,7 +153,7 @@ This would return:
    ...
 ]
 ```
-### Statistics / Difficulty
+### Difficulty
 ```
   `GET` /insight-api/statistics/difficulty?days=14
 ```
@@ -159,7 +167,7 @@ This would return:
     ...
 ]
 ```
-### Statistics / Stake
+### Stake
 ```
   `GET` /insight-api/statistics/stake?days=14
 ```
