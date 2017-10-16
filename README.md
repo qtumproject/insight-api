@@ -6,6 +6,7 @@
 * [QRC20 info](#qrc20-info)
 * [QRC20 transfers](#qrc20-transfers)
 * [QRC20 balances](#qrc20-balances)
+
 ### Statistics
 * [Total Supply](#total-supply)
 
