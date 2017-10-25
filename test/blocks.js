@@ -75,7 +75,7 @@ describe('Blocks', function() {
       log: sinon.stub(),
       getBlock: sinon.stub().callsArgWith(1, null, bitcoreBlock),
       services: {
-        bitcoind: {
+        qtumd: {
           getBlockHeader: sinon.stub().callsArgWith(1, null, blockIndexes['0000000000000afa0c3c0afd450c793a1e300ec84cbe9555166e06132f19a8f7']),
           isMainChain: sinon.stub().returns(true),
           height: 534092
@@ -107,7 +107,7 @@ describe('Blocks', function() {
         log: sinon.stub(),
         getBlock: sinon.stub().callsArgWith(1, null, block),
         services: {
-          bitcoind: {
+          qtumd: {
             getBlockHeader: sinon.stub().callsArgWith(1, null, blockIndexes['000000000000000004a118407a4e3556ae2d5e882017e7ce526659d8073f13a4']),
             isMainChain: sinon.stub().returns(true),
             height: 534092
@@ -185,7 +185,7 @@ describe('Blocks', function() {
     var node = {
       log: sinon.stub(),
       services: {
-        bitcoind: {
+        qtumd: {
           getRawBlock: stub,
           getBlockHeader: function(hash, callback) {
             callback(null, blockIndexes[hash]);
@@ -220,7 +220,7 @@ describe('Blocks', function() {
     var node = {
       log: sinon.stub(),
       services: {
-        bitcoind: {
+        qtumd: {
           getBlockHeader: function(height, callback) {
             callback(null, blockIndexes[height]);
           }

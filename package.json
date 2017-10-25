@@ -1,13 +1,13 @@
 {
-  "name": "insight-api",
+  "name": "qtum-insight-api",
   "description": "A QTUM blockchain REST and web socket API service for Qtumcore Node.",
   "version": "0.0.1",
   "repository": "https://github.com/qtumproject/insight-api.git",
   "contributors": [],
   "bugs": {
-    "url": "https://github.com/bitpay/insight-api/issues"
+    "url": "https://github.com/qtumproject/insight-api/issues"
   },
-  "homepage": "https://github.com/bitpay/insight-api",
+  "homepage": "https://github.com/qtumproject/insight-api",
   "license": "MIT",
   "keywords": [
     "insight",
@@ -25,7 +25,7 @@
     "test": "NODE_ENV=test mocha -R spec --recursive"
   },
   "main": "lib",
-  "bitcoreNode": "lib",
+  "qtumcoreNode": "lib",
   "dependencies": {
     "async": "*",
     "bignumber.js": "^4.0.2",

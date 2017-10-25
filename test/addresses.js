@@ -329,7 +329,7 @@ describe('Addresses', function() {
 
       var node = {
         services: {
-          bitcoind: {
+          qtumd: {
             height: 534230
           }
         },
@@ -393,7 +393,7 @@ describe('Addresses', function() {
 
       var node = {
         services: {
-          bitcoind: {
+          qtumd: {
             height: 534230
           }
         },
@@ -551,7 +551,7 @@ describe('Addresses', function() {
       var node = {
         getAddressHistory: sinon.stub().callsArgWith(2, null, txinfos2),
         services: {
-          bitcoind: {
+          qtumd: {
             height: 534232
           }
         },
@@ -688,7 +688,7 @@ describe('Addresses', function() {
       var node = {
         getAddressHistory: sinon.stub().callsArgWith(2, null, txinfos2),
         services: {
-          bitcoind: {
+          qtumd: {
             height: 534232
           }
         },
