@@ -26,11 +26,11 @@ This is a backend-only service. If you're looking for the web frontend applicati
 npm install -g qtumcore-node@latest
 qtumcore-node create mynode
 cd mynode
-qtumcore-node install insight-api
+qtumcore-node install qtum-insight-api
 qtumcore-node start
 ```
 
-The API endpoints will be available by default at: `http://localhost:3001/insight-api/`
+The API endpoints will be available by default at: `http://localhost:3001/qtum-insight-api/`
 
 ## Prerequisites
 
@@ -39,10 +39,10 @@ The API endpoints will be available by default at: `http://localhost:3001/insigh
 
 ## Query Rate Limit
 
-To protect the server, insight-api has a built it query rate limiter. It can be configurable in `qtumcore-node.json` with:
+To protect the server, qtum-insight-api has a built it query rate limiter. It can be configurable in `qtumcore-node.json` with:
 ``` json
   "servicesConfig": {
-    "insight-api": {
+    "qtum-insight-api": {
       "rateLimiterOptions": {
         "whitelist": ["::ffff:127.0.0.1"]
       }
@@ -53,7 +53,7 @@ To protect the server, insight-api has a built it query rate limiter. It can be 
 Or disabled entirely with:
 ``` json
   "servicesConfig": {
-    "insight-api": {
+    "qtum-insight-api": {
       "disableRateLimiter": true
     }
   }
@@ -64,7 +64,7 @@ Or disabled entirely with:
 
 ### Account Info
 ```
-  `GET` /insight-api/contracts/{:contractHash}/info
+  `GET` /qtum-insight-api/contracts/{:contractHash}/info
 ```
 This would return:
 ```
@@ -94,7 +94,7 @@ This would return:
 
 ### Total 24h Statistic
 ```
-  `GET` /insight-api/statistics/total
+  `GET` /qtum-insight-api/statistics/total
 ```
 This would return:
 ```
@@ -111,7 +111,7 @@ This would return:
 ```
 ### Transactions Statistic
 ```
-  `GET` /insight-api/statistics/transactions?days=14
+  `GET` /qtum-insight-api/statistics/transactions?days=14
 ```
 This would return:
 ```
@@ -127,7 +127,7 @@ This would return:
 
 ### Fees Statistic
 ```
-  `GET` /insight-api/statistics/fees?days=14
+  `GET` /qtum-insight-api/statistics/fees?days=14
 ```
 This would return:
 ```
@@ -141,7 +141,7 @@ This would return:
 ```
 ### Outputs Statistic
 ```
-  `GET` /insight-api/statistics/outputs?days=14
+  `GET` /qtum-insight-api/statistics/outputs?days=14
 ```
 This would return:
 ```
@@ -155,7 +155,7 @@ This would return:
 ```
 ### Difficulty Statistic
 ```
-  `GET` /insight-api/statistics/difficulty?days=14
+  `GET` /qtum-insight-api/statistics/difficulty?days=14
 ```
 This would return:
 ```
@@ -169,7 +169,7 @@ This would return:
 ```
 ### Stake Statistic
 ```
-  `GET` /insight-api/statistics/stake?days=14
+  `GET` /qtum-insight-api/statistics/stake?days=14
 ```
 This would return:
 ```
@@ -185,11 +185,11 @@ This would return:
 ### Total Supply Statistic
 
 ```
-  `GET` /insight-api/supply
+  `GET` /qtum-insight-api/supply
 ```
 or
 ```
-  `GET` /insight-api/supply?format=object
+  `GET` /qtum-insight-api/supply?format=object
 ```
 This would return:
 ```
@@ -204,15 +204,15 @@ or
 
 ### Block
 ```
-  /insight-api/block/[:hash]
-  /insight-api/block/00000000a967199a2fad0877433c93df785a8d8ce062e5f9b451cd1397bdbf62
+  /qtum-insight-api/block/[:hash]
+  /qtum-insight-api/block/00000000a967199a2fad0877433c93df785a8d8ce062e5f9b451cd1397bdbf62
 ```
 
 ### Block Index
 Get block hash by height
 ```
-  /insight-api/block-index/[:height]
-  /insight-api/block-index/0
+  /qtum-insight-api/block-index/[:height]
+  /qtum-insight-api/block-index/0
 ```
 This would return:
 ```
@@ -225,8 +225,8 @@ which is the hash of the Genesis block (0 height)
 
 ### Raw Block
 ```
-  /insight-api/rawblock/[:blockHash]
-  /insight-api/rawblock/[:blockHeight]
+  /qtum-insight-api/rawblock/[:blockHash]
+  /qtum-insight-api/rawblock/[:blockHeight]
 ```
 
 This would return:
@@ -240,7 +240,7 @@ This would return:
 
 Get block summaries by date:
 ```
-  /insight-api/blocks?limit=3&blockDate=2016-04-22
+  /qtum-insight-api/blocks?limit=3&blockDate=2016-04-22
 ```
 
 Example response:
@@ -274,31 +274,31 @@ Example response:
 
 ### Transaction
 ```
-  /insight-api/tx/[:txid]
-  /insight-api/tx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
-  /insight-api/rawtx/[:rawid]
-  /insight-api/rawtx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
+  /qtum-insight-api/tx/[:txid]
+  /qtum-insight-api/tx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
+  /qtum-insight-api/rawtx/[:rawid]
+  /qtum-insight-api/rawtx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
 ```
 
 ### Address
 ```
-  /insight-api/addr/[:addr][?noTxList=1][&from=&to=]
-  /insight-api/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?noTxList=1
-  /insight-api/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?from=1000&to=2000
+  /qtum-insight-api/addr/[:addr][?noTxList=1][&from=&to=]
+  /qtum-insight-api/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?noTxList=1
+  /qtum-insight-api/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?from=1000&to=2000
 ```
 
 ### Address Properties
 ```
-  /insight-api/addr/[:addr]/balance
-  /insight-api/addr/[:addr]/totalReceived
-  /insight-api/addr/[:addr]/totalSent
-  /insight-api/addr/[:addr]/unconfirmedBalance
+  /qtum-insight-api/addr/[:addr]/balance
+  /qtum-insight-api/addr/[:addr]/totalReceived
+  /qtum-insight-api/addr/[:addr]/totalSent
+  /qtum-insight-api/addr/[:addr]/unconfirmedBalance
 ```
 The response contains the value in Satoshis.
 
 ### Unspent Outputs
 ```
-  /insight-api/addr/[:addr]/utxo
+  /qtum-insight-api/addr/[:addr]/utxo
 ```
 Sample return:
 ```
@@ -329,13 +329,13 @@ Sample return:
 ### Unspent Outputs for Multiple Addresses
 GET method:
 ```
-  /insight-api/addrs/[:addrs]/utxo
-  /insight-api/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/utxo
+  /qtum-insight-api/addrs/[:addrs]/utxo
+  /qtum-insight-api/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/utxo
 ```
 
 POST method:
 ```
-  /insight-api/addrs/utxo
+  /qtum-insight-api/addrs/utxo
 ```
 
 POST params:
@@ -345,25 +345,25 @@ addrs: 2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f
 
 ### Transactions by Block
 ```
-  /insight-api/txs/?block=HASH
-  /insight-api/txs/?block=00000000fa6cf7367e50ad14eb0ca4737131f256fc4c5841fd3c3f140140e6b6
+  /qtum-insight-api/txs/?block=HASH
+  /qtum-insight-api/txs/?block=00000000fa6cf7367e50ad14eb0ca4737131f256fc4c5841fd3c3f140140e6b6
 ```
 ### Transactions by Address
 ```
-  /insight-api/txs/?address=ADDR
-  /insight-api/txs/?address=mmhmMNfBiZZ37g1tgg2t8DDbNoEdqKVxAL
+  /qtum-insight-api/txs/?address=ADDR
+  /qtum-insight-api/txs/?address=mmhmMNfBiZZ37g1tgg2t8DDbNoEdqKVxAL
 ```
 
 ### Transactions for Multiple Addresses
 GET method:
 ```
-  /insight-api/addrs/[:addrs]/txs[?from=&to=]
-  /insight-api/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/txs?from=0&to=20
+  /qtum-insight-api/addrs/[:addrs]/txs[?from=&to=]
+  /qtum-insight-api/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/txs?from=0&to=20
 ```
 
 POST method:
 ```
-  /insight-api/addrs/txs
+  /qtum-insight-api/addrs/txs
 ```
 
 POST params:
@@ -409,7 +409,7 @@ Note: if pagination params are not specified, the result is an array of transact
 ### Transaction Broadcasting
 POST method:
 ```
-  /insight-api/tx/send
+  /qtum-insight-api/tx/send
 ```
 POST params:
 ```
@@ -435,22 +435,22 @@ POST response:
 
 ### Historic Blockchain Data Sync Status
 ```
-  /insight-api/sync
+  /qtum-insight-api/sync
 ```
 
 ### Live Network P2P Data Sync Status
 ```
-  /insight-api/peer
+  /qtum-insight-api/peer
 ```
 
 ### Status of the QTUM Network
 ```
-  /insight-api/status?q=xxx
+  /qtum-insight-api/status?q=xxx
 ```
 
 ### DGP info
 ```
-  /insight-api/dgpinfo
+  /qtum-insight-api/dgpinfo
 ```
 
 Where "xxx" can be:
@@ -463,12 +463,12 @@ Where "xxx" can be:
 
 ### Utility Methods
 ```
-  /insight-api/utils/estimatefee[?nbBlocks=2]
+  /qtum-insight-api/utils/estimatefee[?nbBlocks=2]
 ```
 
 ### Min Estimate Fee Per KB
 ```
-  /insight-api/utils/minestimatefee[?nbBlocks=2]
+  /qtum-insight-api/utils/minestimatefee[?nbBlocks=2]
 ```
 
 resp:
@@ -481,22 +481,22 @@ resp:
 
 ### QRC20 info
 ```
-  /insight-api/erc20/:contractAddress
+  /qtum-insight-api/erc20/:contractAddress
 ```
 
 ### QRC20 transfers
 ```
-  /insight-api/erc20/:contractAddress/transfers
+  /qtum-insight-api/erc20/:contractAddress/transfers
 ```
 
 ### QRC20 balances
 ```
-  /insight-api/erc20/:contractAddress/balances
+  /qtum-insight-api/erc20/:contractAddress/balances
 ```
 
 ### Call Contract
 ```
-/contracts/:contractaddress/hash/:contracthash/call
+/qtum-insight-api/contracts/:contractaddress/hash/:contracthash/call
 ```
 
 ## Web Socket API
