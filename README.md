@@ -354,6 +354,11 @@ addrs: 2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f
   /qtum-insight-api/txs/?address=mmhmMNfBiZZ37g1tgg2t8DDbNoEdqKVxAL
 ```
 
+### Transactions Receipt
+```
+  /qtum-insight-api/txs/[:tx_id]/receipt
+```
+
 ### Transactions for Multiple Addresses
 GET method:
 ```
@@ -405,6 +410,8 @@ Sample output:
 ```
 
 Note: if pagination params are not specified, the result is an array of transactions.
+
+
 
 ### Transaction Broadcasting
 POST method:
