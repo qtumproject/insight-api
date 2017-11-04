@@ -30,7 +30,6 @@
     "async": "*",
     "bignumber.js": "^4.0.2",
     "bitcore-lib": "^0.13.7",
-    "qtumcore-lib": "git+ssh://git@github.com:qtumproject/qtumcore-lib.git#master",
     "bitcore-message": "^1.0.1",
     "body-parser": "^1.13.3",
     "compression": "^1.6.1",
@@ -38,7 +37,8 @@
     "lru-cache": "^4.0.1",
     "mongoose": "^4.11.8",
     "morgan": "^1.7.0",
-    "request": "^2.64.0",
+    "qtumcore-lib": "git+ssh://git@github.com:qtumproject/qtumcore-lib.git#master",
+    "request": "^2.83.0",
     "web3": "^0.18.4"
   },
   "devDependencies": {
