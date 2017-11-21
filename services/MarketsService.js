@@ -20,7 +20,7 @@ function MarketsService(options) {
 
     setInterval(function () {
         self._updateInfo();
-    }, 60000);
+    }, 90000);
 
 }
 

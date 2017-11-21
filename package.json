@@ -36,6 +36,7 @@
     "lodash": "^2.4.1",
     "lru-cache": "^4.0.1",
     "mongoose": "^4.11.8",
+    "mongoose-long": "^0.1.1",
     "morgan": "^1.7.0",
     "qtumcore-lib": "git+ssh://git@github.com:qtumproject/qtumcore-lib.git#master",
     "request": "^2.83.0",
