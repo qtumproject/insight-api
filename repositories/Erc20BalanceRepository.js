@@ -25,8 +25,15 @@ Erc20BalanceRepository.prototype.removeBalance = function (data, next) {
 };
 
 
-Erc20BalanceRepository.prototype.getCountBalances = function (contractAddress, next) {
-    return Erc20Balance.count({contract_address: contractAddress}, function(err, count) {
+Erc20BalanceRepository.prototype.getCountBalances = function (contractAddress, options, next) {
+
+    var where = {contract_address: contractAddress};
+
+    if (options && options.addresses && options.addresses.length) {
+        where.$or = [{address : {$in: options.addresses}}];
+    }
+
+    return Erc20Balance.count(where, function(err, count) {
         return next(err, count);
     });
 };
@@ -41,6 +48,19 @@ Erc20BalanceRepository.prototype.getCountBalances = function (contractAddress, n
  */
 Erc20BalanceRepository.prototype.fetchBalances = function (contractAddress, options, next) {
     return Erc20Balance.find({contract_address: contractAddress}, {}, {sort: {created_at: -1}, limit: options.limit, skip: options.offset}, function(err, balances) {
+        return next(err, balances);
+    });
+};
+
+
+Erc20BalanceRepository.prototype.fetchBalancesByAddress = function (address, next) {
+    return Erc20Balance.find({address: address}, {}, function(err, balances) {
+        return next(err, balances);
+    });
+};
+
+Erc20BalanceRepository.prototype.fetchBalancesByAddressAndContract = function (address, contractAddress, next) {
+    return Erc20Balance.findOne({address: address}, {}, function(err, balances) {
         return next(err, balances);
     });
 };

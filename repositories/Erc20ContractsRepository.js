@@ -3,6 +3,40 @@ const Erc20Contracts = require('../models/Erc20Contracts');
 
 function Erc20ContractsRepository () {}
 
+/**
+ *
+ * @param {Array} contractAddresses
+ * @param {Function} next
+ * @return {*}
+ */
+Erc20ContractsRepository.prototype.fetchContracts = function (contractAddresses, next) {
+    return Erc20Contracts.find({contract_address: {$in: contractAddresses}}, function(err, row) {
+        return next(err, row);
+    });
+};
+
+/**
+ *
+ * @param {String} str
+ * @param {Function} next
+ * @return {*}
+ */
+Erc20ContractsRepository.prototype.findBySymbolOrContractAddress = function (str, next) {
+
+    var where = {};
+    where.$or = [{symbol : str}, {contract_address: str}];
+
+    return Erc20Contracts.findOne(where, function(err, row) {
+        return next(err, row);
+    });
+};
+
+Erc20ContractsRepository.prototype.findBySymbol = function (symbol, next) {
+    return Erc20Contracts.findOne({symbol: symbol}, function(err, row) {
+        return next(err, row);
+    });
+};
+
 Erc20ContractsRepository.prototype.fetchContract = function (contractAddress, next) {
     return Erc20Contracts.findOne({contract_address: contractAddress}, function(err, row) {
         return next(err, row);
