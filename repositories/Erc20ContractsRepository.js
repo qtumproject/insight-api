@@ -15,42 +15,9 @@ Erc20ContractsRepository.prototype.fetchContracts = function (contractAddresses,
     });
 };
 
-/**
- *
- * @param {String} str
- * @param {Function} next
- * @return {*}
- */
-Erc20ContractsRepository.prototype.findBySymbolOrContractAddress = function (str, next) {
-
-    var where = {};
-    where.$or = [{symbol : str}, {contract_address: str}];
-
-    return Erc20Contracts.findOne(where, function(err, row) {
-        return next(err, row);
-    });
-};
-
-Erc20ContractsRepository.prototype.findBySymbol = function (symbol, next) {
-    return Erc20Contracts.findOne({symbol: symbol}, function(err, row) {
-        return next(err, row);
-    });
-};
-
 Erc20ContractsRepository.prototype.fetchContract = function (contractAddress, next) {
     return Erc20Contracts.findOne({contract_address: contractAddress}, function(err, row) {
         return next(err, row);
-    });
-};
-/**
- *
- * @param {String} txId
- * @param {Function} next
- * @return {*}
- */
-Erc20ContractsRepository.prototype.fetchContractsByTxId = function (txId, next) {
-    return Erc20Contracts.find({tx_hash: txId}, function(err, rows) {
-        return next(err, rows);
     });
 };
 
