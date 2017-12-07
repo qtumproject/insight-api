@@ -6,7 +6,7 @@ function AddressBalanceRepository () {}
 
 AddressBalanceRepository.prototype.createOrUpdateBalance = function (data, next) {
 
-    return AddressBalance.findOneAndUpdate({address: data.address, balance: data.balance}, data, {upsert: true, new: true}, function(err, row) {
+    return AddressBalance.findOneAndUpdate({address: data.address}, data, {upsert: true, new: true}, function(err, row) {
         return next(err, row);
     });
 };
