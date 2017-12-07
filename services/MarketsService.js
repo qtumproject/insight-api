@@ -44,7 +44,7 @@ MarketsService.prototype._updateInfo = function() {
         if (body && _.isArray(body) && body.length) {
             var needToTrigger = false;
 
-            ['price_usd', 'price_btc', 'market_cap_usd'].forEach(function (param) {
+            ['price_usd', 'price_btc', 'market_cap_usd', 'available_supply'].forEach(function (param) {
 
                 if (self.info[param] !== body[0][param]) {
                     self.info[param] = body[0][param];

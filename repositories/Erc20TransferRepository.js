@@ -70,29 +70,4 @@ Erc20TransferRepository.prototype.createOrUpdateTx = function (data, next) {
 
 };
 
-/**
- *
- * @param {String} transferAddress
- * @param {Function} next
- */
-Erc20TransferRepository.prototype.fetchUniqueContractsByAddresses = function (transferAddress, next) {
-
-    var aggregatorOpts = [{
-        $match: {
-            $or : [{from : transferAddress}, {to : transferAddress}]
-        }
-    }, {
-            $group: {
-                _id: "$contract_address",
-                count: { $sum: 1 }
-            }
-        }
-    ];
-
-    return Erc20Transfer.aggregate(aggregatorOpts).exec(function (err, result) {
-        return next(err, result);
-    })
-};
-
-
 module.exports = Erc20TransferRepository;

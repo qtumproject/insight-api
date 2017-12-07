@@ -13,6 +13,9 @@ const erc20BalanceSchema = new mongoose.Schema({
     },
     amount: {
         type: String
+    },
+    amount_hex: {
+        type: String
     }
 }, {
     timestamps: {
