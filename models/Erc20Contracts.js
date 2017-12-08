@@ -12,6 +12,10 @@ const erc20ContractsSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    contract_address_base: {
+        type: String,
+        required: true
+    },
     contract_address: {
         type: String,
         required: true

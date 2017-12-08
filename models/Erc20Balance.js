@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const erc20BalanceSchema = new mongoose.Schema({
+    contract_address_base: {
+        type: String,
+        required: true
+    },
     contract_address: {
         type: String,
         required: true

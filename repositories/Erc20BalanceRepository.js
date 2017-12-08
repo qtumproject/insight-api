@@ -37,6 +37,7 @@ Erc20BalanceRepository.prototype.getCountBalances = function (contractAddress, o
     });
 };
 
+
 /**
  *
  * @param {String} contractAddress
@@ -80,8 +81,14 @@ Erc20BalanceRepository.prototype.fetchBalancesByAddress = function (address, nex
     });
 };
 
-Erc20BalanceRepository.prototype.fetchBalancesByAddressAndContract = function (address, contractAddress, next) {
-    return Erc20Balance.findOne({address: address}, {}, function(err, balances) {
+Erc20BalanceRepository.prototype.fetchBalanceByBaseAddressAndContract = function (address, contractBaseAddress, next) {
+    return Erc20Balance.findOne({address: address, contract_address_base: contractBaseAddress}, {}, function(err, balances) {
+        return next(err, balances);
+    });
+};
+
+Erc20BalanceRepository.prototype.fetchBalanceByAddressAndContract = function (address, contractAddress, next) {
+    return Erc20Balance.findOne({address: address, contract_address: contractAddress}, {}, function(err, balances) {
         return next(err, balances);
     });
 };

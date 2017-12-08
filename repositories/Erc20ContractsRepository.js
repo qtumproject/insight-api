@@ -15,6 +15,11 @@ Erc20ContractsRepository.prototype.fetchContracts = function (contractAddresses,
     });
 };
 
+Erc20ContractsRepository.prototype.fetchContractByBaseAddress = function (contractBaseAddress, next) {
+    return Erc20Contracts.findOne({contract_address_base: contractBaseAddress}, function(err, row) {
+        return next(err, row);
+    });
+};
 Erc20ContractsRepository.prototype.fetchContract = function (contractAddress, next) {
     return Erc20Contracts.findOne({contract_address: contractAddress}, function(err, row) {
         return next(err, row);

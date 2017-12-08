@@ -109,14 +109,19 @@ module.exports = {
         return false;
     },
     getBitAddressFromContractAddress: function (contractAddress, networkId) {
+        try {
+            if (/^0x/.test(contractAddress)) {
+                contractAddress = contractAddress.slice(contractAddress.length - 40, contractAddress.length);
+            }
 
-        if (/^0x/.test(contractAddress)) {
-            contractAddress = contractAddress.slice(contractAddress.length - 40, contractAddress.length);
+            var checksum = bitcore.crypto.Hash.sha256sha256(new bitcore.deps.Buffer(networkId + contractAddress, 'hex')),
+                hexBitAddress = networkId + contractAddress + checksum.toString('hex').slice(0, 8);
+
+            return bitcore.encoding.Base58.encode(new bitcore.deps.Buffer(hexBitAddress, 'hex'));
+        } catch (e) {
+
+            return null;
         }
-
-        var checksum = bitcore.crypto.Hash.sha256sha256(new bitcore.deps.Buffer(networkId + contractAddress, 'hex')),
-            hexBitAddress = networkId + contractAddress + checksum.toString('hex').slice(0, 8);
-
-        return bitcore.encoding.Base58.encode(new bitcore.deps.Buffer(hexBitAddress, 'hex'));
     }
+
 };

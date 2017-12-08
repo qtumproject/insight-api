@@ -1,8 +1,24 @@
 const mongoose = require('mongoose');
 
 const erc20TransferSchema = new mongoose.Schema({
+    block_height: {
+        type: Number,
+        required: true
+    },
+    block_time: {
+        type: Number,
+        required: true
+    },
+    block_date_time: {
+        type: Date,
+        required: true
+    },
     tx_hash: {
         type: String,
+        required: true
+    },
+    tx_date_time: {
+        type: Date,
         required: true
     },
     tx_time: {
@@ -13,6 +29,10 @@ const erc20TransferSchema = new mongoose.Schema({
         type: Number
     },
     contract_address: {
+        type: String,
+        required: true
+    },
+    contract_address_base: {
         type: String,
         required: true
     },

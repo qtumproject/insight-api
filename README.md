@@ -1,5 +1,10 @@
 # Insight API
 
+## Tokens
+* [Token Account Balance](#token-account-balance)
+* [Token Total supply](#token-totla-supply)
+* [Token Transactions](#token-transactions)
+
 ## Table of Contents
 * [Getting Started](#getting-started)
 * [DGP info](#dgpinfo)
@@ -59,6 +64,68 @@ Or disabled entirely with:
   }
   ```
   
+
+## Tokens
+
+### Token Account Balance
+```
+  `GET` /qtum-insight-api/tokens/{:contractAddressBase}/addresses/{:addressBase}/balance
+```
+This would return:
+```
+{
+    "total_supply": "1000000000000000000"
+}
+```
+
+
+
+### Token Total supply
+
+```
+  `GET` /qtum-insight-api/tokens/{:contractAddressBase}/total-supply
+```
+This would return:
+```
+{
+    "total_supply": "1000000000000000000"
+}
+```
+
+### Token Transactions
+
+```
+  `GET` http://localhost:3001/qtum-insight-api/tokens/QNdW79juyJNJ89h99D9vfo5QhCZpmavJNX/transactions?limit=20&offset=1&from_block=34101&to_block=34378&from_date_time=2017-10-27T01:23:10.000Z&to_date_time=2018-10-27T01:24:10.000Z&addresses[]=QbmrFnBhyMKUhrabXfaAWZTncSWbJA8FsG&addresses[]=QarHW2HjV8Z3njxiTuvUZU3hmqahKNZ49y
+```
+This would return:
+```
+{
+    "limit": 20,
+    "offset": 1,
+    "addresses": [
+        "QbmrFnBhyMKUhrabXfaAWZTncSWbJA8FsG",
+        "QarHW2HjV8Z3njxiTuvUZU3hmqahKNZ49y"
+    ],
+    "from_block": 34101,
+    "to_block": 34378,
+    "from_date_time": "2017-10-27T01:23:10.000Z",
+    "to_date_time": "2018-10-27T01:24:10.000Z",
+    "count": 2,
+    "items": [
+        {
+            "contract_address_base": "QNdW79juyJNJ89h99D9vfo5QhCZpmavJNX",
+            "block_height": 34377,
+            "tx_hash": "e5c16ea5785fed909957100c3721a62f5f5dfe427af1c926ba11e64c3f905fab",
+            "from": "QNvEBPtXwezdJjkUUy2JF6pirGn1vtkaNt",
+            "to": "QarHW2HjV8Z3njxiTuvUZU3hmqahKNZ49y",
+            "value": "100000000000",
+            "block_date_time": "2017-10-27T12:28:48.000Z"
+        }
+    ]
+}
+```
+
+
 
 ## API HTTP Endpoints
 
