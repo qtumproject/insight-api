@@ -68,24 +68,56 @@ Or disabled entirely with:
 ## Tokens
 
 ### Token Account Balance
+
 ```
   `GET` /qtum-insight-api/tokens/{:tokenAddressBase}/addresses/{:addressBase}/balance
 ```
+or
+```
+  `GET` /qtum-insight-api/tokens/{:tokenAddressBase}/addresses/{:addressBase}/balance?format=object
+```
+
+* **Query Params**
+
+    * **Optional:**
+        
+            `format=object`
+            
 This would return:
+
+```
+1000000000000000000
+```
+
 ```
 {
-    "total_supply": "1000000000000000000"
+    "balance": "1000000000000000000"
 }
 ```
 
 
 
 ### Token Total supply
+```
+    `GET` /qtum-insight-api/tokens/{:tokenAddressBase}/total-supply
+```
+or
+```
+  `GET` /qtum-insight-api/tokens/{:tokenAddressBase}/total-supply?format=object
+```
+
+* **Query Params**
+
+    * **Optional:**
+        
+            `format=object`
+            
+This would return:
 
 ```
-  `GET` /qtum-insight-api/tokens/{:tokenAddressBase}/total-supply
+"1000000000000000000"
 ```
-This would return:
+or
 ```
 {
     "total_supply": "1000000000000000000"
