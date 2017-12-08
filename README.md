@@ -100,25 +100,26 @@ This would return:
     limit=20&offset=1&from_block=34101&to_block=34378&from_date_time=2017-10-27T01:23:10.000Z&to_date_time=2018-10-27T01:24:10.000Z&addresses[]=QbmrFnBhyMKUhrabXfaAWZTncSWbJA8FsG&addresses[]=QarHW2HjV8Z3njxiTuvUZU3hmqahKNZ49y
 
 ```
+
 * **Query Params**
 
-* **Optional:**
-    
-        `limit=<Number>`
+    * **Optional:**
         
-            > MAX_LIMIT === 100
-        
-        `offset=<Number>`
-        
-        `from_block=<Number>`
-        
-        `to_block=<Number>`
-        
-        `from_date_time=<ISO8601 Date>`
-        
-        `to_date_time=<ISO8601 Date>`
-        
-        `addresses=<Array.<String>>`
+            `limit=<Number>`
+            
+                > MAX_LIMIT === 100
+            
+            `offset=<Number>`
+            
+            `from_block=<Number>`
+            
+            `to_block=<Number>`
+            
+            `from_date_time=<ISO8601 Date>`
+            
+            `to_date_time=<ISO8601 Date>`
+            
+            `addresses=<Array.<String>>`
 
 Eg:
 ```
