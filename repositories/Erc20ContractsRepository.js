@@ -39,4 +39,22 @@ Erc20ContractsRepository.prototype.createOrUpdateTx = function (data, next) {
 
 };
 
+Erc20ContractsRepository.prototype.findContract = function (query, options, next) {
+    var where = {};
+
+    where.$or = [{symbol : new RegExp(query, 'i')}, {name : new RegExp(query, 'i')}];
+
+    if (query.length === 40) {
+        where.$or.push({contract_address: query})
+    }
+
+    if (query.length === 34) {
+        where.$or.push({contract_address_base: query})
+    }
+
+    return Erc20Contracts.find(where, {}, {limit: 100}, function(err, row) {
+        return next(err, row);
+    });
+};
+
 module.exports = Erc20ContractsRepository;
