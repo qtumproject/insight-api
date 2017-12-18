@@ -4,8 +4,8 @@ const Erc20Balance = require('../models/Erc20Balance');
 function Erc20BalanceRepository () {}
 
 
-Erc20BalanceRepository.prototype.findBalanceByEthAddress = function (addressEth, next) {
-    return Erc20Balance.findOne({address_eth: addressEth}, function(err, row) {
+Erc20BalanceRepository.prototype.findBalanceByEthAddress = function (contractAddress, addressEth, next) {
+    return Erc20Balance.findOne({contract_address: contractAddress, address_eth: addressEth}, function(err, row) {
         return next(err, row);
     });
 };
