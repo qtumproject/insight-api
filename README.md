@@ -64,7 +64,6 @@ Or disabled entirely with:
   }
   ```
   
-  
 **Note:** `routePrefix` can be configurable in `qtumcore-node.json` with:
 
 ``` json
@@ -162,7 +161,8 @@ or
             
             `addresses=<Array.<String>>`
 
-Eg:
+
+E.g.:
 ```
   `GET` /insight-api/tokens/QNdW79juyJNJ89h99D9vfo5QhCZpmavJNX/transactions?limit=20&offset=1&from_block=34101&to_block=34378&from_date_time=2017-10-27T01:23:10.000Z&to_date_time=2018-10-27T01:24:10.000Z&addresses[]=QbmrFnBhyMKUhrabXfaAWZTncSWbJA8FsG&addresses[]=QarHW2HjV8Z3njxiTuvUZU3hmqahKNZ49y
 ```
@@ -194,8 +194,6 @@ This would return:
     ]
 }
 ```
-
-
 
 ## API HTTP Endpoints
 
@@ -485,6 +483,7 @@ addrs: 2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f
   /insight-api/txs/?block=HASH
   /insight-api/txs/?block=00000000fa6cf7367e50ad14eb0ca4737131f256fc4c5841fd3c3f140140e6b6
 ```
+
 ### Transactions by Address
 ```
   /insight-api/txs/?address=ADDR
@@ -644,6 +643,7 @@ resp:
 ```
 
 ## Web Socket API
+
 The web socket API is served using [socket.io](http://socket.io).
 
 The following are the events published by insight:
@@ -732,4 +732,3 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
