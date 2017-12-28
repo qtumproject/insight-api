@@ -37,6 +37,10 @@ const erc20ContractsSchema = new mongoose.Schema({
     },
     exception: {
         type: Boolean
+    },
+    description: {
+        type: String,
+        required: false
     }
 }, {
     timestamps: {
