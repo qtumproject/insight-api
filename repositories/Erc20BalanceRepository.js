@@ -10,6 +10,28 @@ Erc20BalanceRepository.prototype.findBalanceByEthAddress = function (contractAdd
     });
 };
 
+/**
+ *
+ * @param {Function} next
+ * @return {*}
+ */
+Erc20BalanceRepository.prototype.fetchContractsCountHolders = function (next) {
+
+    return Erc20Balance.aggregate(
+        [
+            {
+                $group : {
+                    _id :  "$contract_address",
+                    count: { $sum: 1 }
+                }
+            }
+
+        ], function (err, items) {
+            return next(err, items);
+        });
+
+};
+
 
 Erc20BalanceRepository.prototype.createOrUpdateBalance = function (data, next) {
     return Erc20Balance.findOneAndUpdate({contract_address: data.contract_address, address_eth: data.address_eth}, data, {upsert: true, new: true}, function(err, row) {

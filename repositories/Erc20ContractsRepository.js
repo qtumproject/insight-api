@@ -3,6 +3,18 @@ const Erc20Contracts = require('../models/Erc20Contracts');
 
 function Erc20ContractsRepository () {}
 
+
+/**
+ *
+ * @param {Function} next
+ * @return {*}
+ */
+Erc20ContractsRepository.prototype.fetchAllContracts = function (next) {
+    return Erc20Contracts.find({}, function(err, rows) {
+        return next(err, rows);
+    });
+};
+
 /**
  *
  * @param {Array} contractAddresses
