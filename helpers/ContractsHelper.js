@@ -26,7 +26,7 @@ module.exports = {
             functionHashes['transfer(address,uint256)'],
             functionHashes['transferFrom(address,address,uint256)'],
             functionHashes['Transfer(address,address,uint256)'],
-            functionHashes['Approval(address,address,uint256)']//TODO::uncomment
+            // functionHashes['Approval(address,address,uint256)']//TODO::uncomment
         ];
 
         if (scriptHex) {
