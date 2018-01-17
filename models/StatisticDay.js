@@ -62,7 +62,8 @@ const statisticDaySchema = new mongoose.Schema({
     },
     date: {
         type: Date,
-        required: true
+        required: true,
+        index: true
     }
 }, {
     timestamps: {

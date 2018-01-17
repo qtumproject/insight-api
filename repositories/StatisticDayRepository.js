@@ -15,4 +15,18 @@ StatisticDayRepository.prototype.createOrUpdateDay = function(date, data, next) 
     });
 };
 
+/**
+ *
+ * @param {Date} from
+ * @param {Date} to
+ * @param next
+ * @return {*}
+ */
+StatisticDayRepository.prototype.getStats = function (from, to, next) {
+    return StatisticDay.find({date: {$gt: from, $lte: to}}, {}, {sort: {date: -1}}, function(err, row) {
+        return next(err, row);
+    });
+};
+
+
 module.exports = StatisticDayRepository;
