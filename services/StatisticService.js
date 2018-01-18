@@ -19,6 +19,7 @@ function StatisticService(options) {
 
     this.node = options.node;
     this.statisticDayRepository = options.statisticDayRepository;
+    this.totalStatisticRepository = options.totalStatisticRepository;
 
     this.addressBalanceService = options.addressBalanceService;
     this.lastBlockRepository = options.lastBlockRepository;
@@ -174,7 +175,7 @@ StatisticService.prototype.processPrevBlocks = function (height, next) {
         function(callback) {
 
             return self.node.getJsonBlock(height, function (err, blockJson) {
-
+                console.log('err, blockJson', err, blockJson);
                 if (err) {
                     return callback(err);
                 }
@@ -216,6 +217,7 @@ StatisticService.prototype.processPrevBlocks = function (height, next) {
 
         },
         function (err) {
+            console.log('!!!!', err);
             return next(err);
         }
     );
@@ -428,6 +430,40 @@ StatisticService.prototype.processBlock = function (blockHeight, next) {
                 return callback(err);
             });
         }, function (callback) {
+
+            if (data.subsidy && block.flags === bitcore.Block.PROOF_OF_STAKE) {
+
+                var dataFlow = {
+                    posTotalAmount: 0
+                };
+
+                return async.waterfall([function (callback) {
+
+                    return self.totalStatisticRepository.getPOSTotalAmount(function (err, value) {
+                        if (err) {
+                            return callback(err);
+                        }
+
+                        dataFlow.posTotalAmount = value;
+
+                        return callback();
+                    });
+
+                }, function (callback) {
+
+                    return self.totalStatisticRepository.createOrUpdatePosTotalAmount(new BigNumber(dataFlow.posTotalAmount).plus(data.subsidy).toString(10), function (err) {
+                        return callback(err);
+                    });
+
+                }], function (err) {
+                    return callback(err);
+                });
+
+            }
+
+            return callback();
+
+        }, function (callback) {
             return self.process24hBlock(data, function (err) {
                 return callback(err);
             });
@@ -441,7 +477,7 @@ StatisticService.prototype.processBlock = function (blockHeight, next) {
 
 /**
  *
- * @param {String} date 01-01-2018
+ * @param {String} date e.g. 01-01-2018
  * @param {Object} data
  * @param next
  * @return {*}
@@ -823,23 +859,47 @@ StatisticService.prototype.getFees = function (days, next) {
  */
 StatisticService.prototype.getStakes = function (days, next) {
 
-    var self = this;
+    var self = this,
+        dataFlow = {
+            totalSubsidyPOSAmount: 0,
+            stats: []
+        };
 
-    return self.getStats(days, function (err, stats) {
+    return async.waterfall([function (callback) {
+        return self.totalStatisticRepository.getPOSTotalAmount(function (err, value) {
+
+            if (err) {
+                return callback(err);
+            }
+
+            dataFlow.totalSubsidyPOSAmount = value;
+
+            return callback();
+        });
+    }, function (callback) {
+        return self.getStats(days, function (err, stats) {
+            if (err) {
+                return callback(err);
+            }
+
+            dataFlow.stats = stats;
+
+            return callback();
+        });
+    }], function (err) {
 
         if (err) {
             return next(err);
         }
 
-        var results = [];
+        var results = [],
+            totalSubsidyPOSAmount = dataFlow.totalSubsidyPOSAmount;
 
-        var totalSubsidityPOSAmount = SupplyHelper.getPOSTotalSupplyByHeight(self.node.services.qtumd.height).mul(1e8);
-
-        stats.forEach(function (day) {
+        dataFlow.stats.forEach(function (day) {
 
             results.push({
                 date: self.formatTimestamp(day.date),
-                sum: day.stake && day.stake.sum > 0 ? new BigNumber(day.stake.sum).dividedBy(totalSubsidityPOSAmount).toNumber() : 0
+                sum: totalSubsidyPOSAmount && day.stake && day.stake.sum > 0 ? new BigNumber(day.stake.sum).dividedBy(totalSubsidyPOSAmount).toNumber() : 0
             });
 
         });
@@ -917,8 +977,9 @@ StatisticService.prototype.getTotal = function(nextCb) {
 
     }
 
-    var totalSubsidityPOSAmount = SupplyHelper.getPOSTotalSupplyByHeight(initHeight).mul(1e8),
-        result = {
+    return self.totalStatisticRepository.getPOSTotalAmount(function (err, totalSubsidyPOSAmount) {
+
+        var result = {
             n_blocks_mined: minedBlocks,
             time_between_blocks: sumBetweenTime && countBetweenTime ? sumBetweenTime / countBetweenTime : 0,
             mined_currency_amount: minedCurrencyAmount,
@@ -926,10 +987,12 @@ StatisticService.prototype.getTotal = function(nextCb) {
             number_of_transactions: numTransactions,
             outputs_volume: totalOutputsAmount,
             difficulty: sumDifficulty && countDifficulty ? sumDifficulty / countDifficulty : 0,
-            stake: minedCurrencyAmount && totalSubsidityPOSAmount ? minedCurrencyAmount / totalSubsidityPOSAmount : 0
+            stake: minedCurrencyAmount && totalSubsidyPOSAmount ? minedCurrencyAmount / totalSubsidyPOSAmount : 0
         };
 
-    return nextCb(null, result);
+        return nextCb(null, result);
+
+    });
 
 };
 
