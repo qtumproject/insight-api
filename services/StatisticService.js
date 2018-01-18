@@ -175,7 +175,7 @@ StatisticService.prototype.processPrevBlocks = function (height, next) {
         function(callback) {
 
             return self.node.getJsonBlock(height, function (err, blockJson) {
-                console.log('err, blockJson', err, blockJson);
+
                 if (err) {
                     return callback(err);
                 }
@@ -217,7 +217,7 @@ StatisticService.prototype.processPrevBlocks = function (height, next) {
 
         },
         function (err) {
-            console.log('!!!!', err);
+            
             return next(err);
         }
     );
