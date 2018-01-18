@@ -625,6 +625,11 @@ resp:
 ### QRC20 info
 ```
   /insight-api/erc20/:contractAddress
+  > DEPRECATED
+```
+    
+```
+  /insight-api/qrc20/:contractAddress
 ```
 
 ### QRC20 transfers
