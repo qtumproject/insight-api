@@ -82,7 +82,7 @@ Erc20TransferRepository.prototype.isTransfersExistsByTxHash = function (txHash, 
  */
 Erc20TransferRepository.prototype.fetchTransfers = function (contractAddress, options, next) {
 
-    return Erc20Transfer.find(this._getTransfersConditions(contractAddress, options), {}, {sort: {created_at: -1}, limit: options.limit, skip: options.offset}, function(err, transfers) {
+    return Erc20Transfer.find(this._getTransfersConditions(contractAddress, options), {}, {sort: {block_height: -1}, limit: options.limit, skip: options.offset}, function(err, transfers) {
         return next(err, transfers);
     });
 
