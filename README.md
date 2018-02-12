@@ -27,10 +27,19 @@ This is a backend-only service. If you're looking for the web frontend applicati
 
 ## Getting Started
 
+1. Compile qtum from https://github.com/qtumproject/qtum-bitcore
+
+2. Install qtumcore-node
+
 ```bashl
 npm install -g qtumcore-node@latest
 qtumcore-node create mynode
 cd mynode
+```
+
+3. Configure your node using the qtumcore-node.json file, point qtumd to your installation of qtum-bitcore 
+
+```
 qtumcore-node install qtum-insight-api
 qtumcore-node start
 ```
