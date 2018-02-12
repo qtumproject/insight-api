@@ -22,6 +22,7 @@ function AddressBalanceService(options) {
 
     this.cacheIntervals = [];
     this.richerThanCache = [];
+    this.richestAddressesListCache = [];
 
 }
 
@@ -41,6 +42,15 @@ AddressBalanceService.prototype.getIntervals = function (next) {
  */
 AddressBalanceService.prototype.getRicherThan = function (next) {
     return next(null, this.richerThanCache);
+};
+
+/**
+ *
+ * @param {Function} next
+ * @return {*}
+ */
+AddressBalanceService.prototype.getRichestAddressesList = function (next) {
+    return next(null, this.richestAddressesListCache);
 };
 
 /**
@@ -213,6 +223,27 @@ AddressBalanceService.prototype.updateCacheIntervals = function (next) {
 /**
  *
  * @param {Function} next
+ */
+AddressBalanceService.prototype.updateRichestAddressesList = function (next) {
+
+    var self = this;
+
+    return self.addressBalanceRepository.getMaxBalances({limit: 100}, function (err, addressBalances) {
+
+        if (err) {
+            return next(err);
+        }
+
+        self.richestAddressesListCache = addressBalances;
+
+        return next();
+
+    });
+};
+
+/**
+ *
+ * @param {Function} next
  * @return {*}
  */
 AddressBalanceService.prototype.start = function (next) {
@@ -268,6 +299,10 @@ AddressBalanceService.prototype.start = function (next) {
             self.common.log.info('[AddressBalanceService] lastTipHeight = ', self.lastTipHeight);
 
             return callback();
+        });
+    }, function (callback) {
+        return self._updateCaches(function (err) {
+            return callback(err);
         });
     }], function (err) {
 
@@ -328,15 +363,7 @@ AddressBalanceService.prototype._processLastBlocks = function(height, next) {
             return next(err);
         }
 
-        return async.waterfall([function (callback) {
-            return self.updateRicherThanCache(function (err) {
-                return callback(err);
-            });
-        }, function (callback) {
-            return self.updateCacheIntervals(function(err) {
-                return callback(err)
-            });
-        }], function (err) {
+        return self._updateCaches(function (err) {
             return next(err);
         });
 
@@ -344,6 +371,33 @@ AddressBalanceService.prototype._processLastBlocks = function(height, next) {
 
 };
 
+/**
+ *
+ * @param {Function} next
+ * @return {*}
+ * @private
+ */
+AddressBalanceService.prototype._updateCaches = function(next) {
+
+    var self = this;
+
+    return async.waterfall([function (callback) {
+        return self.updateRicherThanCache(function (err) {
+            return callback(err);
+        });
+    }, function (callback) {
+        return self.updateCacheIntervals(function(err) {
+            return callback(err);
+        });
+    }, function (callback) {
+        return self.updateRichestAddressesList(function(err) {
+            return callback(err);
+        });
+    }], function (err) {
+        return next(err);
+    });
+
+};
 /**
  *
  * @param {Number} height
@@ -481,7 +535,7 @@ AddressBalanceService.prototype.processBlock = function (blockHeight, next) {
                     }
 
                 }], function (err) {
-                    return callback(err)
+                    return callback(err);
                 });
 
             }, function (err) {

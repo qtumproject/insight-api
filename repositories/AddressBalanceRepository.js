@@ -23,6 +23,12 @@ AddressBalanceRepository.prototype.getMaxBalance = function (next) {
     });
 };
 
+AddressBalanceRepository.prototype.getMaxBalances = function (options, next) {
+    return AddressBalance.find().sort({'balance': -1}).limit(options.limit).exec( function(err, res) {
+        return next(err, res);
+    });
+};
+
 AddressBalanceRepository.prototype.getCountAddressesGreaterThan = function (min, next) {
     return AddressBalance.count({balance: {$gt: min}}, function(err, res) {
         return next(err, res);
