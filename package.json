@@ -38,7 +38,7 @@
     "moment": "^2.19.3",
     "mongoose": "^4.11.8",
     "morgan": "^1.7.0",
-    "qtumcore-lib": "git://git@github.com:qtumproject/qtumcore-lib.git#master",
+    "qtumcore-lib": "https://github.com/qtumproject/qtumcore-lib.git#master",
     "request": "^2.83.0",
     "web3": "^0.18.4"
   },
