@@ -226,9 +226,10 @@ AddressBalanceService.prototype.updateCacheIntervals = function (next) {
  */
 AddressBalanceService.prototype.updateRichestAddressesList = function (next) {
 
-    var self = this;
+    var self = this,
+        BALANCES_LIMIT = 200;
 
-    return self.addressBalanceRepository.getMaxBalances({limit: 100}, function (err, addressBalances) {
+    return self.addressBalanceRepository.getMaxBalances({limit: BALANCES_LIMIT}, function (err, addressBalances) {
 
         if (err) {
             return next(err);
