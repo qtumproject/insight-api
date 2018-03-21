@@ -1,7 +1,7 @@
 {
   "name": "qtum-insight-api",
   "description": "A QTUM blockchain REST and web socket API service for Qtumcore Node.",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "repository": "https://github.com/qtumproject/insight-api.git",
   "contributors": [],
   "bugs": {
