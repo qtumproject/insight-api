@@ -320,6 +320,25 @@ This would return:
 ### Total Supply Statistic
 
 ```
+  `GET` /insight-api/circulating-supply
+```
+or
+```
+  `GET` /insight-api/circulating-supply/?format=object
+```
+This would return:
+```
+88410384
+```
+or
+```
+{
+"circulatingSupply": "88410384"
+}
+```
+
+
+```
   `GET` /insight-api/supply
 ```
 or
