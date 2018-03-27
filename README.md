@@ -131,6 +131,12 @@ This is a backend-only service. If you're looking for the web frontend applicati
 
 8. The API endpoints will be available by default at: `http://localhost:3001/qtum-insight-api/`  
 
+## Add-on Services
+
+There add-on service available to extend the functionality of Qtumcore:
+
+- [QTUM Explorer](https://github.com/qtumproject/qtum-explorer)
+
 ## Prerequisites
 
 **Note:** You can use an existing QTUM data directory, however `txindex`, `addressindex`, `timestampindex` and `spentindex` needs to be set to true in `qtum.conf`, as well as a few other additional fields.
