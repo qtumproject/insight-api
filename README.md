@@ -61,46 +61,40 @@ This is a backend-only service. If you're looking for the web frontend applicati
       "services": [
         "qtumd",
         "qtum-insight-api",
-        "qtum-explorer",
         "web"
-      ],
+     ],
       "servicesConfig": {
-        "qtum-explorer": {
-          "apiPrefix": "qtum-insight-api",
-          "routePrefix": "qtum-explorer",
-          "nodemapLink": "https://qtum.org/en/nodemap"
-       },
-       "qtum-insight-api": {
-         "routePrefix": "qtum-insight-api",
-         "rateLimiterOptions": {
-           "whitelist": [
+      "qtum-insight-api": {
+        "routePrefix": "qtum-insight-api",
+        "rateLimiterOptions": {
+          "whitelist": [
              "123.456.12.34",
              "::ffff:123.456.12.34"
            ],
-           "whitelistLimit": 9999999,
-           "limit": 200,
+          "whitelistLimit": 9999999,
+          "limit": 200,
            "interval": 60000,
            "banInterval": 3600000
          },
-          "db": {
-            "host": "127.0.0.1",
-            "port": "27017",
-            "database": "qtum-api-livenet",
-            "user": "",
-            "password": ""
-         },
-          "erc20": {
-            "updateFromBlockHeight": 0
-          }
+        "db": {
+          "host": "127.0.0.1",
+          "port": "27017",
+          "database": "qtum-api-livenet",
+          "user": "",
+          "password": ""
         },
-        "qtumd": {
-          "spawn": {
-            "datadir": "/home/user/.qtum",
-           "exec": "/home/user/qtum-bitcore/src/qtumd"
-          }
+        "erc20": {
+          "updateFromBlockHeight": 0
         }
+    },
+    "qtumd": {
+      "spawn": {
+      	"datadir": "/home/user/.qtum",
+        "exec": "/home/user/qtum-bitcore/src/qtumd"
       }
     }
+  }
+}
 
     ```  
 6. Edit qtum.conf  
