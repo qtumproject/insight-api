@@ -51,7 +51,6 @@ This is a backend-only service. If you're looking for the web frontend applicati
     cd mynode
 
     $(npm bin)/qtumcore-node install https://github.com/qtumproject/insight-api.git#master
-    $(npm bin)/qtumcore-node install https://github.com/qtumproject/qtum-explorer.git#master
     ```  
 5. Edit qtumcore-node.json  
 
@@ -130,9 +129,7 @@ This is a backend-only service. If you're looking for the web frontend applicati
     $(npm bin)/qtumcore-node start
     ```  
 
-8. Open a web browser to `http://localhost:3001/qtum-explorer` or `http://localhost:3001/qtum-insight-api`  
-
-    The API endpoints will be available by default at: `http://localhost:3001/qtum-insight-api/`
+8. The API endpoints will be available by default at: `http://localhost:3001/qtum-insight-api/`  
 
 ## Prerequisites
 
