@@ -62,40 +62,39 @@ This is a backend-only service. If you're looking for the web frontend applicati
         "qtumd",
         "qtum-insight-api",
         "web"
-     ],
+      ],
       "servicesConfig": {
-      "qtum-insight-api": {
-        "routePrefix": "qtum-insight-api",
-        "rateLimiterOptions": {
+        "qtum-insight-api": {
+          "routePrefix": "qtum-insight-api",
+          "rateLimiterOptions": {
           "whitelist": [
              "123.456.12.34",
              "::ffff:123.456.12.34"
            ],
           "whitelistLimit": 9999999,
           "limit": 200,
-           "interval": 60000,
-           "banInterval": 3600000
-         },
-        "db": {
-          "host": "127.0.0.1",
-          "port": "27017",
-          "database": "qtum-api-livenet",
-          "user": "",
-          "password": ""
+          "interval": 60000,
+          "banInterval": 3600000
+          },
+          "db": {
+            "host": "127.0.0.1",
+            "port": "27017",
+            "database": "qtum-api-livenet",
+            "user": "",
+            "password": ""
+          },
+          "erc20": {
+            "updateFromBlockHeight": 0
+          }
         },
-        "erc20": {
-          "updateFromBlockHeight": 0
+        "qtumd": {
+          "spawn": {
+        	  "datadir": "/home/user/.qtum",
+            "exec": "/home/user/qtum-bitcore/src/qtumd"
+          }
         }
-    },
-    "qtumd": {
-      "spawn": {
-      	"datadir": "/home/user/.qtum",
-        "exec": "/home/user/qtum-bitcore/src/qtumd"
       }
     }
-  }
-}
-
     ```  
 6. Edit qtum.conf  
 
