@@ -18,24 +18,24 @@ function TransactionService(opts) {
  * @param {Function} callback
  * @return {*}
  */
-TransactionService.prototype.getDetailedTransaction = function (txid, callback) {
+TransactionService.prototype.getDetailedTransaction = function(txid, callback) {
 
     var self = this;
     var tx = null;
-    return async.waterfall([function (callback) {
+    return async.waterfall([function(callback) {
 
         return self.node.getDetailedTransaction(txid, function(err, transaction) {
             tx = transaction;
             return callback(err);
         });
 
-    }, function (callback) {
+    }, function(callback) {
 
-        return self.addReceiptIfTransfersExists(tx, function (err, transaction) {
+        return self.addReceiptIfTransfersExists(tx, function(err, transaction) {
             return callback(err, transaction);
         });
 
-    }], function (err, transaction) {
+    }], function(err, transaction) {
         return callback(err, transaction);
     });
 
@@ -47,33 +47,38 @@ TransactionService.prototype.getDetailedTransaction = function (txid, callback) 
  * @param {Function} next
  * @return {*}
  */
-TransactionService.prototype.addReceiptIfTransfersExists = function (transaction, next) {
+TransactionService.prototype.addReceiptIfTransfersExists = function(transaction, next) {
 
     var self = this;
 
-    return async.waterfall([function (callback) {
-        return self.erc20TransferRepository.isTransfersExistsByTxHash(transaction.hash, function (err, exists) {
-            return callback(err, exists);
-        });
-    }, function (exists, callback) {
+    return async.waterfall([
+        function(callback) {
 
-        if (exists) {
-            return self.node.getTransactionReceipt(transaction.hash, function (err, result) {
+            return self.erc20TransferRepository.isTransfersExistsByTxHash(transaction.hash, function(err, exists) {
+
+                transaction.isqrc20Transfer = exists;
+
+                return callback(err);
+            });
+
+        }, function(callback) {
+
+            return self.node.getTransactionReceipt(transaction.hash, function(err, result) {
 
                 if (err) {
                     return callback(err);
                 }
 
-                transaction.receipt = result;
+                if (Array.isArray(result) && result.length) {
+                    transaction.receipt = result;
+                }
 
                 return callback(null, transaction);
             });
-        }
 
-        return callback(null, transaction);
-    }], function (err, transaction) {
-        return next(err, transaction);
-    });
+        }], function(err, transaction) {
+            return next(err, transaction);
+        });
 };
 
 
