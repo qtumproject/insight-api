@@ -745,6 +745,9 @@ resp:
 ```
 
 ### QRC20 transfers
+
+If you want to get receipt, then add "withReceipt=true" to the query
+
 ```
   /insight-api/erc20/:contractAddress/transfers
 ```
