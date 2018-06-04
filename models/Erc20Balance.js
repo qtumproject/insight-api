@@ -28,6 +28,8 @@ const erc20BalanceSchema = new mongoose.Schema({
     }
 });
 
+erc20BalanceSchema.index({ contract_address: 1, address: 1}, { unique: true });
+
 const Erc20Balance = mongoose.model('Erc20Balance', erc20BalanceSchema);
 
 module.exports = Erc20Balance;
