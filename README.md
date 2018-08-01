@@ -67,6 +67,8 @@ This is a backend-only service. If you're looking for the web frontend applicati
       ],
       "servicesConfig": {
         "qtum-insight-api": {
+          "enableApiLogs": true,
+          "enableContractsApiLogs": true,
           "routePrefix": "qtum-insight-api",
           "rateLimiterOptions": {
           "whitelist": [
@@ -167,8 +169,31 @@ Or disabled entirely with:
       "routePrefix": "insight-api",
     }
   }
-  ```
+```
+  
+## Enable / Disable logs
 
+ To reduce the load on the server, qtum-insight-api has opportunity to enable / disable logs.
+ Both `enableApiLogs` and `enableContractsApiLogs` can be configured in `qtumcore-node.json` with:
+``` json
+  "servicesConfig": {
+    "qtum-insight-api": {
+      "enableApiLogs": true,
+      "enableContractsApiLogs": false
+    }
+  }
+```
+
+**Note:** In the case below `enableApiLogs` overrides `enableContractsApiLogs`:
+
+``` json
+  "servicesConfig": {
+    "qtum-insight-api": {
+       "enableApiLogs": false,
+       "enableContractsApiLogs": true
+    }
+  }
+```
 
 
 ## Tokens
