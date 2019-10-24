@@ -35,11 +35,13 @@ This is a backend-only service. If you're looking for the web frontend applicati
     ```  
 2. Install mongo https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/  
 
-3. Install qtum-bitcore https://github.com/qtumproject/qtum-bitcore - with ZMQ ! 
+3. Install qtum https://github.com/qtumproject/qtum - with bitcore and ZMQ ! 
 
     ```bash
     # with ZMQ
     sudo apt-get install libzmq3-dev 
+    # with bitcore
+    ./configure --enable-bitcore
     ```  
 4. Install qtumcore-node  
 
