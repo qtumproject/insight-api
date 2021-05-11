@@ -34,7 +34,7 @@
     "body-parser": "^1.13.3",
     "compression": "^1.6.1",
     "cors": "^2.8.5",
-    "lodash": "^2.4.1",
+    "lodash": "^4.17.21",
     "lru-cache": "^4.0.1",
     "moment": "^2.19.3",
     "mongoose": "^4.11.8",
